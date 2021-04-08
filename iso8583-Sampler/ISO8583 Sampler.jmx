@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.4.1">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="sybond-TestPlan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="CardPrefix" elementType="Argument">
+            <stringProp name="Argument.name">CardPrefix</stringProp>
+            <stringProp name="Argument.value">666666</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <nz.co.breakpoint.jmeter.iso8583.ISO8583Config guiclass="TestBeanGUI" testclass="nz.co.breakpoint.jmeter.iso8583.ISO8583Config" testname="ISO8583 Connection Configuration" enabled="true">
+        <stringProp name="classname">org.jpos.iso.channel.BSSCustomChannel</stringProp>
+        <stringProp name="header"></stringProp>
+        <stringProp name="host">192.168.56.103</stringProp>
+        <stringProp name="keyPassword"></stringProp>
+        <stringProp name="maxConnections">1</stringProp>
+        <stringProp name="mtiMapping"></stringProp>
+        <stringProp name="packager">/Volumes/Data/git-repo/arta-iso8583-jmeter/project/iso8583Simulator.xml</stringProp>
+        <stringProp name="port">8087</stringProp>
+        <boolProp name="reuseConnection">true</boolProp>
+        <stringProp name="storePassword"></stringProp>
+        <collectionProp name="channelConfig">
+          <elementProp name="timeout" elementType="nz.co.breakpoint.jmeter.iso8583.ChannelConfigItem" testname="timeout">
+            <stringProp name="value">9900000</stringProp>
+          </elementProp>
+          <elementProp name="length-encode" elementType="nz.co.breakpoint.jmeter.iso8583.ChannelConfigItem" testname="length-encode">
+            <stringProp name="value">0</stringProp>
+          </elementProp>
+        </collectionProp>
+        <stringProp name="keystore"></stringProp>
+        <collectionProp name="muxKeyConfig">
+          <elementProp name="0800" elementType="nz.co.breakpoint.jmeter.iso8583.MuxKeyConfigItem" testname="0800">
+            <stringProp name="value">11</stringProp>
+          </elementProp>
+          <elementProp name="0200" elementType="nz.co.breakpoint.jmeter.iso8583.MuxKeyConfigItem" testname="0200">
+            <stringProp name="value">2 3 11 12 37</stringProp>
+          </elementProp>
+        </collectionProp>
+      </nz.co.breakpoint.jmeter.iso8583.ISO8583Config>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="NMM" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <nz.co.breakpoint.jmeter.iso8583.ISO8583Sampler guiclass="TestBeanGUI" testclass="nz.co.breakpoint.jmeter.iso8583.ISO8583Sampler" testname="SignOn" enabled="false">
+          <stringProp name="header"></stringProp>
+          <stringProp name="responseCodeField">39</stringProp>
+          <stringProp name="successResponseCode">00</stringProp>
+          <intProp name="timeout">5000</intProp>
+          <stringProp name="trailer"></stringProp>
+          <collectionProp name="fields">
+            <elementProp name="0" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="0">
+              <stringProp name="content">0800</stringProp>
+            </elementProp>
+            <elementProp name="7" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="7">
+              <stringProp name="content">${__time(MMddHHmmss,)}</stringProp>
+            </elementProp>
+            <elementProp name="11" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="11">
+              <stringProp name="content">${__RandomString(6,0123456789,)}</stringProp>
+            </elementProp>
+            <elementProp name="70" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="70">
+              <stringProp name="content">001</stringProp>
+              <stringProp name="TestPlan.comments">Signon</stringProp>
+            </elementProp>
+          </collectionProp>
+        </nz.co.breakpoint.jmeter.iso8583.ISO8583Sampler>
+        <hashTree/>
+        <nz.co.breakpoint.jmeter.iso8583.ISO8583Sampler guiclass="TestBeanGUI" testclass="nz.co.breakpoint.jmeter.iso8583.ISO8583Sampler" testname="SignOff" enabled="false">
+          <stringProp name="header"></stringProp>
+          <stringProp name="responseCodeField">39</stringProp>
+          <stringProp name="successResponseCode">00</stringProp>
+          <intProp name="timeout">5000</intProp>
+          <stringProp name="trailer"></stringProp>
+          <collectionProp name="fields">
+            <elementProp name="0" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="0">
+              <stringProp name="content">0800</stringProp>
+            </elementProp>
+            <elementProp name="7" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="7">
+              <stringProp name="content">${__time(MMddHHmmss,)}</stringProp>
+            </elementProp>
+            <elementProp name="11" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="11">
+              <stringProp name="content">${__RandomString(6,0123456789,)}</stringProp>
+            </elementProp>
+            <elementProp name="70" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="70">
+              <stringProp name="content">002</stringProp>
+              <stringProp name="TestPlan.comments">Signon</stringProp>
+            </elementProp>
+          </collectionProp>
+        </nz.co.breakpoint.jmeter.iso8583.ISO8583Sampler>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Inquiry" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <nz.co.breakpoint.jmeter.iso8583.ISO8583Sampler guiclass="TestBeanGUI" testclass="nz.co.breakpoint.jmeter.iso8583.ISO8583Sampler" testname="Inquiry" enabled="true">
+          <stringProp name="header"></stringProp>
+          <stringProp name="responseCodeField">39</stringProp>
+          <stringProp name="successResponseCode">00</stringProp>
+          <intProp name="timeout">5000</intProp>
+          <stringProp name="trailer"></stringProp>
+          <collectionProp name="fields">
+            <elementProp name="0" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="0">
+              <stringProp name="content">0200</stringProp>
+            </elementProp>
+            <elementProp name="2" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="2">
+              <stringProp name="content">${CardPrefix}${__RandomString(10,1234567890,suffixCard)}</stringProp>
+            </elementProp>
+            <elementProp name="3" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="3">
+              <stringProp name="content">261000</stringProp>
+            </elementProp>
+            <elementProp name="4" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="4">
+              <stringProp name="content">000000010000</stringProp>
+            </elementProp>
+            <elementProp name="7" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="7">
+              <stringProp name="content">${__time(MMddHHmmss,)}</stringProp>
+            </elementProp>
+            <elementProp name="11" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="11">
+              <stringProp name="content">${__RandomString(6,0123456789,)}</stringProp>
+            </elementProp>
+            <elementProp name="12" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="12">
+              <stringProp name="content">${__time(HHmmss,)}</stringProp>
+            </elementProp>
+            <elementProp name="13" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="13">
+              <stringProp name="content">${__time(MMdd,)}</stringProp>
+            </elementProp>
+            <elementProp name="15" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="15">
+              <stringProp name="content">${__timeShift(MMdd,,P1D,,)}</stringProp>
+            </elementProp>
+            <elementProp name="18" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="18">
+              <stringProp name="content">6011</stringProp>
+            </elementProp>
+            <elementProp name="32" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="32">
+              <stringProp name="content">360002</stringProp>
+            </elementProp>
+            <elementProp name="35" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="35">
+              <stringProp name="content">${CardPrefix}${suffixCard}=0950</stringProp>
+            </elementProp>
+            <elementProp name="37" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="37">
+              <stringProp name="content">${__RandomString(12,0123456789ABCDEFGHIJKLMNOPQRSTU,)}</stringProp>
+            </elementProp>
+            <elementProp name="42" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="42">
+              <stringProp name="content">TERMINALSTRESS1</stringProp>
+            </elementProp>
+            <elementProp name="43" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="43">
+              <stringProp name="content">TERMINAL STRESS TEST ARTAJASA    JKT IDN</stringProp>
+            </elementProp>
+            <elementProp name="48" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="48">
+              <stringProp name="content">PI04BT01CD100000000003</stringProp>
+            </elementProp>
+            <elementProp name="49" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="49">
+              <stringProp name="content">360</stringProp>
+            </elementProp>
+            <elementProp name="57" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="57">
+              <stringProp name="content">6273021308111234567890520ABCDEABCDEABCDEABCDE98120002000000009912000000100000</stringProp>
+            </elementProp>
+            <elementProp name="100" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="100">
+              <stringProp name="content">93600123</stringProp>
+            </elementProp>
+            <elementProp name="102" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="102">
+              <stringProp name="content">9360012312345678901</stringProp>
+            </elementProp>
+          </collectionProp>
+        </nz.co.breakpoint.jmeter.iso8583.ISO8583Sampler>
+        <hashTree/>
+      </hashTree>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
