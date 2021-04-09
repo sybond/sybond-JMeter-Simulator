@@ -32,7 +32,7 @@ Tesplan
       ┗ Message2
       ┗ Message3
       ┗ Message4
-   ┗ Thread1
+   ┗ Thread2
       ┗ Message1
       ┗ Message2
 ```

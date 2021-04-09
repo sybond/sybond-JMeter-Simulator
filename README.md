@@ -29,4 +29,4 @@ To support ISO8583 messaging format within JMeter, you need to install following
 3. Copy Custom JPOS module from [here](https://github.com/sybond/sybond-JMeter-Simulator/tree/master/lib) into JMeter's `lib` directory.
 4. Restart JMeter
 
-To configure ISO8583 simulator you can read [here]().
+To configure ISO8583 simulator you can read [here](iso8583-Sampler).
